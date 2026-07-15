@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<div class="container">
+
+<h2>Welcome {{ username }}</h2>
+
+<form method="POST">
+
+<input type="text" name="website" placeholder="Website Name" required>
+
+<input type="text" name="site_user" placeholder="Website Username" required>
+
+<input type="text" name="site_password" placeholder="Website Password" value="{{ generated }}" required>
+
+<p>Password Strength : <b>{{ strength }}</b></p>
+
+<input type="submit" value="Save Password">
+
+</form>
+
+<br>
+
+<a href="/generate">
+<button>Generate Password</button>
+</a>
+
+<p>{{ message }}</p>
+
+<h3>Saved Passwords</h3>
+
+<table>
+
+<tr>
+<th>Website</th>
+<th>Username</th>
+<th>Password</th>
+</tr>
+
+{% for row in passwords %}
+
+<tr>
+
+<td>{{ row[0] }}</td>
+
+<td>{{ row[1] }}</td>
+
+<td>{{ row[2] }}</td>
+
+</tr>
+
+{% endfor %}
+
+</table>
+
+<br>
+
+<a href="/logout">
+<button>Logout</button>
+</a>
+
+</div>
+
+</body>
+
+</html>
